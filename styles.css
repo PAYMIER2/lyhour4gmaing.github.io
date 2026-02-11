@@ -1,0 +1,378 @@
+:root {
+    --bg-primary: #f4f7fc;
+    --bg-secondary: #ffffff;
+    --text-primary: #333333;
+    --text-secondary: #555555;
+    --accent-blue: #3498db;
+    --accent-blue-dark: #2980b9;
+    --accent-orange: #e67e22;
+    --accent-orange-dark: #d35400;
+    --accent-red: #e74c3c;
+    --accent-red-dark: #c0392b;
+    --border-color: #cccccc;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-heavy: rgba(0, 0, 0, 0.15);
+    --transition-speed: 0.3s;
+}
+
+.dark-mode {
+    --bg-primary: #2c3e50;
+    --bg-secondary: #34495e;
+    --text-primary: #ecf0f1;
+    --text-secondary: #bdc3c7;
+    --border-color: #7f8c8d;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    max-width: 800px;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+}
+
+.profiles-left {
+    flex-direction: row-reverse;
+}
+
+.container, .profiles-container {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px var(--shadow-heavy);
+    height: 600px;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.profiles-container {
+    width: 100%;
+    max-width: 350px;
+    min-width: 300px;
+    overflow-y: auto;
+    display: none;
+}
+
+/* Input Groups */
+.input-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+input[type="text"], input[type="number"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+    box-sizing: border-box;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+}
+
+/* Buttons */
+button {
+    padding: 10px 15px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-dark));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+button:hover {
+    background: linear-gradient(135deg, var(--accent-blue-dark), var(--accent-blue));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px var(--shadow-color);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Icon Buttons */
+.theme-toggle, .timer-toggle-button, #dragButton, #undoButton, #redoButton,
+#startTimerButton, #stopTimerButton, #deleteProfileButton, #createProfileButton,
+#toggleProfilesButton, #togglePositionButton, #copyToggleButton {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    font-size: 1.5em;
+    padding: 5px;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover, .timer-toggle-button:hover, #dragButton:hover,
+#startTimerButton:hover, #stopTimerButton:hover, #toggleProfilesButton:hover,
+#togglePositionButton:hover, #copyToggleButton:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+}
+
+#undoButton, #redoButton {
+    background: linear-gradient(135deg, #7f8c8d, #95a5a6) !important;
+    color: white !important;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 1.2em;
+}
+
+#undoButton:hover, #redoButton:hover {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d) !important;
+}
+
+/* Custom button states */
+#balanceTypeButton.last-state {
+    background: var(--accent-orange) !important;
+}
+
+#balanceTypeButton.last-state:hover {
+    background: var(--accent-orange-dark) !important;
+}
+
+.timer-toggle-button.active {
+    color: var(--accent-red) !important;
+}
+
+/* Sections */
+.switch-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.left-buttons, .top-buttons, .header-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.timer-section {
+    display: none;
+    width: 100%;
+    margin-top: 5px;
+    padding: 15px;
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+}
+
+.timer-section.active {
+    display: block;
+}
+
+.timer {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--accent-red);
+    margin: 10px 0;
+}
+
+.Start-Timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.log {
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    max-height: 150px;
+    overflow-y: auto;
+    font-size: 0.9em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.log-entry {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+/* Profile List */
+.profile-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.profile-item:hover {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.profile-item.selected-profile {
+    background-color: rgba(52, 152, 219, 0.2);
+    border-color: var(--accent-blue);
+}
+
+.profile-item.dragging {
+    opacity: 0.5;
+    transform: scale(1.02);
+}
+
+.profile-checkbox {
+    min-width: 22px;
+    min-height: 22px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: var(--accent-blue);
+}
+
+.profile-info {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.profile-name {
+    font-weight: 600;
+}
+
+.profile-balance {
+    font-family: monospace;
+    font-weight: 500;
+}
+
+/* Filter Controls */
+.filter-controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+#profileFilter {
+    flex-grow: 1;
+    height: 40px;
+}
+
+#balanceTypeButton, #selectAllButton, #copyProfilesButton, #updateCheckedButton {
+    height: 40px;
+    padding: 0 10px;
+    min-width: 40px;
+}
+
+#selectAllButton, #copyProfilesButton, #updateCheckedButton {
+    background: white;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+#selectAllButton:hover, #copyProfilesButton:hover, #updateCheckedButton:hover {
+    background: #f0f0f0;
+}
+
+.dark-mode #selectAllButton, .dark-mode #copyProfilesButton, .dark-mode #updateCheckedButton {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.dark-mode #selectAllButton:hover, .dark-mode #copyProfilesButton:hover, .dark-mode #updateCheckedButton:hover {
+    background: #3d5166;
+}
+
+/* Sync Timer */
+.sync-timer {
+    display: none;
+    margin-top: 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-red);
+}
+
+/* Copy Message */
+#copy-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-blue);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: none;
+    max-width: 80%;
+    text-align: center;
+}
+
+/* Responsiveness */
+@media (max-width: 800px) {
+    .main-wrapper {
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+    }
+    .container, .profiles-container {
+        max-width: 480px;
+        width: 100%;
+        height: auto;
+        min-height: 500px;
+    }
+}
